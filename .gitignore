@@ -32,3 +32,6 @@ sysinfo.txt
 
 # OSX
 .DS_Store
+
+# Project Specific
+ScreenshotMovieOutput/
