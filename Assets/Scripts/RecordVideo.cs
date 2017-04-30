@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 // Reference: http://wiki.unity3d.com/index.php/ScreenShotMovie
@@ -13,6 +14,10 @@ public class RecordVideo : MonoBehaviour {
     public int sizeMultiplier = 1;
 
     private string realFolder = "";
+
+	private IEnumerator recordScreenshotsCoroutine;
+	private bool recording;
+	public Button recordButton;
 
     void Start()
     {
@@ -30,14 +35,36 @@ public class RecordVideo : MonoBehaviour {
         }
         // Create the folder
         System.IO.Directory.CreateDirectory(realFolder);
-    }
 
-    void Update()
-    {
-        // name is "realFolder/shot 0005.png"
-        var name = string.Format("{0}/shot {1:D04}.png", realFolder, Time.frameCount);
+		recordScreenshotsCoroutine = RecordScreenshots (); // set up the coroutine that records screenshots
+		recording = false; // we won't start recording immediately
+		((Text)recordButton.transform.GetChild (0).GetComponent<Text>()).text = "Start Recording"; // set up record button initial text
+		recordButton.GetComponent<Button>().onClick.AddListener(ToggleRecord); // add listener to Record button
 
-        // Capture the screenshot
-        Application.CaptureScreenshot(name, sizeMultiplier);
     }
+		
+	private void ToggleRecord() {
+		// Stop the recording if we are already recording
+		if (recording) {
+			StopCoroutine (recordScreenshotsCoroutine);
+			((Text)recordButton.transform.GetChild (0).GetComponent<Text>()).text = "Start Recording";
+		} else {
+			StartCoroutine (recordScreenshotsCoroutine);
+			((Text)recordButton.transform.GetChild (0).GetComponent<Text>()).text = "Stop Recording";
+
+		}
+		recording = !recording; // toggle the "recording" bool flag
+	}
+
+	private IEnumerator RecordScreenshots() {
+		while (true) {
+			// name is "realFolder/shot 0005.png"
+			var name = string.Format ("{0}/shot {1:D04}.png", realFolder, Time.frameCount);
+
+			// Capture the screenshot
+			Application.CaptureScreenshot (name, sizeMultiplier);
+			yield return null; // Unity will crash without this line
+		}
+		yield return null;
+	}
 }
