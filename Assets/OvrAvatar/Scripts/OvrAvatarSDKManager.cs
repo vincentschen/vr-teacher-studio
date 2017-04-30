@@ -35,11 +35,11 @@ public class OvrAvatarSDKManager : MonoBehaviour {
     private void Initialize()
     {
         string appId = OvrAvatarSettings.AppID;
-        if (appId == "")
-        {
-            Debug.LogError("No Oculus Rift App ID has been provided. Go to OvrAvatar > Edit Configuration to supply one", OvrAvatarSettings.Instance);
-            appId = "0";
-        }
+        //if (appId == "")
+        //{
+        //    Debug.LogError("No Oculus Rift App ID has been provided. Go to OvrAvatar > Edit Configuration to supply one", OvrAvatarSettings.Instance);
+        //    appId = "0";
+        //}
         CAPI.ovrAvatar_Initialize(appId);
         specificationCallbacks = new Dictionary<UInt64, HashSet<specificationCallback>>();
         assetLoadedCallbacks = new Dictionary<UInt64, HashSet<assetLoadedCallback>>();
