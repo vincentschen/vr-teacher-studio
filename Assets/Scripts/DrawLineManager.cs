@@ -7,7 +7,7 @@ public class DrawLineManager : MonoBehaviour {
     enum triggerStates {standby, enter, hold};
     private int prevTriggerState; 
 
-    private LineRenderer currLine;
+    private MeshLineRenderer currLine;
     private int numClicks = 0;
 
 	// Update is called once per frame
@@ -23,7 +23,10 @@ public class DrawLineManager : MonoBehaviour {
             prevTriggerState = (int)triggerStates.enter;
 
             GameObject go = new GameObject ();
-            currLine = go.AddComponent<LineRenderer>();
+            go.AddComponent<MeshRenderer>();
+            currLine = go.AddComponent<MeshLineRenderer>();
+
+            currLine.setWidth(.1f);
 
             numClicks = 0;
         }
@@ -33,12 +36,15 @@ public class DrawLineManager : MonoBehaviour {
         {
             prevTriggerState = (int)triggerStates.hold;
 
-            currLine.SetVertexCount(numClicks + 1);
 
             // global position of right controller
             Vector3 rightControllerPos = GameObject.Find("OVRCameraRig").transform.position
                 + OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTrackedRemote);
-            currLine.SetPosition(numClicks, rightControllerPos);
+
+            //currLine.SetVertexCount(numClicks + 1);
+            //currLine.SetPosition(numClicks, rightControllerPos);
+
+            currLine.AddPoint(rightControllerPos);
 
             numClicks++; 
         }
