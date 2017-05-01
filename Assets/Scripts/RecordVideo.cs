@@ -9,9 +9,9 @@ public class RecordVideo : MonoBehaviour {
 
     // The folder we place all screenshots inside.
     // If the folder exists we will append numbers to create an empty folder.
-    public string folder = "ScreenshotMovieOutput";
-    public int frameRate = 25;
-    public int sizeMultiplier = 1;
+    public static string folder = "ScreenshotMovieOutput";
+    public static int frameRate = 25;
+    public static int sizeMultiplier = 1;
 
     private string realFolder = "";
 
