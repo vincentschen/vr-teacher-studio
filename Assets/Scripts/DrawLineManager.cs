@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DrawLineManager : MonoBehaviour {
 
+    public Material lMat; 
+
     enum triggerStates {standby, enter, hold};
     private int prevTriggerState; 
 
@@ -26,6 +28,7 @@ public class DrawLineManager : MonoBehaviour {
             go.AddComponent<MeshRenderer>();
             currLine = go.AddComponent<MeshLineRenderer>();
 
+            currLine.lmat = lMat; 
             currLine.setWidth(.1f);
 
             numClicks = 0;
