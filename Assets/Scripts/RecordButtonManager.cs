@@ -7,7 +7,7 @@ public class RecordButtonManager : MonoBehaviour {
     // The folder we place all screenshots inside.
     // If the folder exists we will append numbers to create an empty folder.
     public static string folder = "ScreenshotMovieOutput";
-    public static int frameRate = 25;
+    public static int frameRate = 60;
     public static int sizeMultiplier = 1;
 
     public TextMesh recordTimeText;
