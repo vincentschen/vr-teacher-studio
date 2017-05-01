@@ -10,6 +10,8 @@ public class RecordButtonManager : MonoBehaviour {
     public static int frameRate = 25;
     public static int sizeMultiplier = 1;
 
+    public TextMesh recordTimeText;
+
     public Material recordingMat;
     public Material stoppedMat;
 
@@ -17,6 +19,7 @@ public class RecordButtonManager : MonoBehaviour {
 
     private IEnumerator recordScreenshotsCoroutine;
     private bool recording;
+    private float totalRecordTime = 0; 
 
     private MeshRenderer mr;
 
@@ -48,6 +51,12 @@ public class RecordButtonManager : MonoBehaviour {
         mr = GetComponent<MeshRenderer>(); 
     }
 
+    void Update()
+    {
+        if (recording) totalRecordTime += Time.deltaTime;
+        recordTimeText.text = totalRecordTime.ToString("0.00");
+    }
+
     private void ToggleRecord()
     {
         // Stop the recording if we are already recording
@@ -57,7 +66,6 @@ public class RecordButtonManager : MonoBehaviour {
             //((Text)recordButton.transform.GetChild(0).GetComponent<Text>()).text = "Start Recording";
             Debug.Log("Stop recording.");
             mr.sharedMaterial = stoppedMat;
-
         }
         else
         {

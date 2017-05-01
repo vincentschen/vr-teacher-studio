@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PreviewVideo : MonoBehaviour {
-	public static string folder = RecordVideo.folder;
-	public static int frameRate = RecordVideo.frameRate;
+	public static string folder = RecordButtonManager.folder;
+	public static int frameRate = RecordButtonManager.frameRate;
 
 	private string realFolder = "";
 
