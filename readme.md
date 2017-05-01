@@ -1,3 +1,5 @@
+## [Video Demo Here](https://www.youtube.com/watch?v=jLIFgSz0g7s)
+
 ## Inspiration
 A few weeks ago, a friend of mine came over to try the Oculus Rift. I showed him Oculus Quill, which is a drawing app. He tried to explain the [geometric interpretation of the cross product](https://en.wikipedia.org/wiki/Cross_product#Geometric_meaning) in VR. It worked!
 
